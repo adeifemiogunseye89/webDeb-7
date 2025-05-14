@@ -1,0 +1,254 @@
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --container-bg: #fff;
+    --input-border: #ddd;
+    --input-focus-border: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.25);
+    --error-color: #dc3545;
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --success-border: #c3e6cb;
+    --primary-btn-bg: #007bff;
+    --primary-btn-hover-bg: #0056b3;
+    --header-bg: #e9ecef;
+    --transition-speed: 0.3s;
+}
+
+.dark-theme {
+    --bg-color: #1a1a2e;
+    --text-color: #e0e0e0;
+    --container-bg: #16213e;
+    --input-border: #555;
+    --input-focus-border: #0f3460;
+    --input-focus-shadow: rgba(15, 52, 96, 0.5);
+    --error-color: #ff6b6b;
+    --success-bg: #2c5b2d;
+    --success-text: #a7d7a7;
+    --success-border: #448845;
+    --primary-btn-bg: #0f3460;
+    --primary-btn-hover-bg: #1f4a7e;
+    --header-bg: #0f3460;
+}
+
+/* --- General Styles --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column; /* For header and main content */
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 70px; /* Space for fixed header */
+    box-sizing: border-box;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.page-header {
+    background-color: var(--header-bg);
+    padding: 10px 20px;
+    position: fixed; /* Fixed header */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+    transition: background-color var(--transition-speed) ease;
+}
+
+#themeSwitcher {
+    background: none;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform 0.2s ease;
+}
+#themeSwitcher:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: scale(1.1);
+}
+
+.container {
+    background-color: var(--container-bg);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px; /* Adjust if header is not fixed or for spacing */
+    margin-bottom: 20px;
+    transition: background-color var(--transition-speed) ease;
+    animation: fadeInContainer 0.8s ease-out forwards; /* Entry animation */
+}
+
+@keyframes fadeInContainer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    transition: color var(--transition-speed) ease;
+}
+
+#preferenceDisplay {
+    text-align: center;
+    margin-bottom: 15px;
+    font-style: italic;
+    color: var(--text-color);
+    opacity: 0.8;
+    transition: color var(--transition-speed) ease;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: color var(--transition-speed) ease;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    background-color: var(--container-bg); /* Match container for dark mode */
+    color: var(--text-color); /* Ensure text is visible in dark mode */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color var(--transition-speed) ease,
+                background-color var(--transition-speed) ease,
+                color var(--transition-speed) ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 5px var(--input-focus-shadow);
+}
+
+.form-group input.invalid,
+.form-group textarea.invalid {
+    border-color: var(--error-color) !important; /* Important to override focus */
+}
+.form-group input.valid { /* Optional: Green border for valid fields */
+    border-color: var(--success-border);
+}
+
+
+.error-message {
+    display: block;
+    color: var(--error-color);
+    font-size: 0.875em;
+    margin-top: 3px;
+    min-height: 1em;
+    transition: color var(--transition-speed) ease;
+}
+
+button[type="submit"] {
+    background-color: var(--primary-btn-bg);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color var(--transition-speed) ease, transform 0.1s ease-out;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-btn-hover-bg);
+}
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+button[type="submit"]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.success-message {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid var(--success-border);
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    animation: slideInFadeIn 0.5s ease-out forwards;
+}
+
+@keyframes slideInFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- Animation Trigger Section --- */
+.animation-trigger-section {
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px dashed var(--input-border);
+}
+
+.animation-trigger-section h2 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-btn-bg);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color var(--transition-speed) ease, transform 0.2s ease-out;
+}
+
+.box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Animation for the box */
+.pulse-animation {
+    animation: pulse 0.8s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+    50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(0, 123, 255, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+}
